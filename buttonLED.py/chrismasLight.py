@@ -16,6 +16,7 @@ def loop():
 
         if(state % 4 == 0):
             turnOff()
+            print('Lights off...')
         elif(state % 4 == 1):
             flowLeft2Right()
             print ('Left 2 Right...')
