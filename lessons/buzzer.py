@@ -7,16 +7,6 @@ def setup():
     GPIO.setup(buzzerPin, GPIO.OUT)
     GPIO.setup(buttonPin,GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-
-
-
-
-
-
-
-
-
-
 def loop():
     while True:
         if GPIO.input(buttonPin)==GPIO.LOW:
