@@ -39,6 +39,7 @@ def destroy():
 
 if __name__ == "__main__":
     print ("Program is starting...")
+    setup()
     try:
         loop()
     except KeyboardInterrupt:
