@@ -20,7 +20,7 @@ def analogWrite(value):
     bus.write_byte_data(address,cmd,value)
 
 def setup():
-    global p_Red.p_Green.p_Blue
+    global p_Red,p_Green,p_Blue
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(ledRedPin, GPIO.OUT)
     GPIO.setup(ledGreenPin, GPIO.OUT)
@@ -41,7 +41,7 @@ def loop():
         p_Red.ChangeDutyCycle(value_Red*100/255)
         p_Green.ChangeDutyCycle(value_Green*100/255)
         p_Blue.ChangeDutyCycle(value_Blue*100/255)
-        print("ADC Value value_Red: %d.\tvalue_Green: %d.\tvalue_Blue: %d%"(value_Red.value_Green.value_Blue))
+        print("ADC Value value_Red: %d,\tvalue_Green: %d,\tvalue_Blue: %d"%(value_Red,value_Green,value_Blue))
 
         time.sleep(0.01)
 
@@ -53,5 +53,5 @@ if __name__ =='__main__':
     setup()
     try:
         loop()
-        except KeyboardInterrupt:
-            destroy()
+    except KeyboardInterrupt:
+        destroy()
