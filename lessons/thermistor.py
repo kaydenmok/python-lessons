@@ -9,8 +9,8 @@ def analogRead(chn):
     value = bus.read_byte_data(address,cmd+chn)
     return value
 
-def analogWrite():
-    bus.write_byte_data(address,cmd,chn,value)
+def analogWrite(value):
+    bus.write_byte_data(address,cmd,value)
 
 def setup():
     GPIO.setmode(GPIO.BOARD)
