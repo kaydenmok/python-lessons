@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import smbus
 import time
-
+#j
 address = 0x48
 bus=smbus.SMBus(1)
 cmd=0x40
