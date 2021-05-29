@@ -5,10 +5,10 @@ import time
 address = 0x48
 bus=smbus.SMBus(1)
 cmd=0x40
-ledPin = 22
-led2Pin = 24
-led3Pin = 29
-led4Pin = 6
+ledWhitePin = 31
+ledGreenPin = 18
+ledRedPin = 40
+ledBluePin = 15
 Z_Pin = 12
 
 def analogRead(chn):
@@ -22,12 +22,15 @@ def analogWrite(value):
 
 def setup():
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setmode(GPIO.HIGH)
     GPIO.setup(Z_Pin,GPIO.IN,GPIO.PUD_UP)
-    GPIO.setup(ledPin, GPIO.OUT)
-    GPIO.setup(led2Pin, GPIO.OUT)
-    GPIO.setup(led3Pin, GPIO.OUT)
-    GPIO.setup(led4Pin, GPIO.OUT)
+    GPIO.setup(ledWhitePin, GPIO.OUT)
+    GPIO.output(ledWhitePin, GPIO.LOW)
+    GPIO.setup(ledGreenPin, GPIO.OUT)
+    GPIO.output(ledGreenPin, GPIO.LOW)
+    GPIO.setup(ledRedPin, GPIO.OUT)
+    GPIO.output(ledRedPin, GPIO.LOW)
+    GPIO.setup(ledBluePin, GPIO.OUT)
+    GPIO.output(ledBluePin, GPIO.LOW)
 
 
 def loop():
@@ -44,27 +47,27 @@ def loop():
 
 def ledFunc(val_X, val_Y, val_Z):
     if val_Y > 205: 
-        ledSwitch(ledPin, True)
+        ledSwitch(ledWhitePin, True)
     else:
-        ledSwitch(ledPin, False)
+        ledSwitch(ledWhitePin, False)
 
     if val_Y < 50:
-        ledSwitch(led2Pin, True)
+        ledSwitch(ledGreenPin, True)
     else:
-        ledSwitch(led2Pin, False)
+        ledSwitch(ledGreenPin, False)
 
     if val_X > 205: 
-        ledSwitch(led3Pin, True)
+        ledSwitch(ledRedPin, True)
     else:
-        ledSwitch(led3Pin, False)
+        ledSwitch(ledRedPin, False)
 
     if val_X < 50: 
-        ledSwitch(led4Pin, True)
+        ledSwitch(ledBluePin, True)
     else:
-        ledSwitch(led4Pin, False)    
+        ledSwitch(ledBluePin, False)    
 
-def ledSwitch(ledPin, isOn = False):
-    GPIO.setmode(ledPin, GPIO.HIGH if isOn else GPIO.LOW)
+def ledSwitch(ledWhitePin, isOn = True):
+    GPIO.output(ledWhitePin, GPIO.HIGH if isOn else GPIO.LOW)
 
 
 def destroy():
