@@ -5,10 +5,10 @@ import time
 address = 0x48
 bus=smbus.SMBus(1)
 cmd=0x40
-ledPin = 6
-led2Pin = 19
-led3Pin = 21
-led4Pin = 25
+ledPin = 22
+led2Pin = 24
+led3Pin = 29
+led4Pin = 6
 Z_Pin = 12
 
 def analogRead(chn):
@@ -24,6 +24,11 @@ def setup():
     GPIO.setmode(GPIO.BOARD)
     GPIO.setmode(GPIO.HIGH)
     GPIO.setup(Z_Pin,GPIO.IN,GPIO.PUD_UP)
+    GPIO.setup(ledPin, GPIO.OUT)
+    GPIO.setup(led2Pin, GPIO.OUT)
+    GPIO.setup(led3Pin, GPIO.OUT)
+    GPIO.setup(led4Pin, GPIO.OUT)
+
 
 def loop():
     while True:
@@ -31,32 +36,36 @@ def loop():
         val_Y = analogRead(0)
         val_X = analogRead(1)
 
+        ledFunc(val_X, val_Y, val_Z)
+
         print("value_X:%d,\tvalue_Y:%d,\tvalue_Z:%d"%(val_X,val_Y, val_Z))
         time.sleep(0.01)
 
-def ledfunc(val_Y):
+
+def ledFunc(val_X, val_Y, val_Z):
     if val_Y > 205: 
-        GPIO.setmode(ledPin, GPIO.HIGH)
+        ledSwitch(ledPin, True)
     else:
-        GPIO.setmode(GPIO.LOW)        
-    
-def led2func(val_Y):
+        ledSwitch(ledPin, False)
+
     if val_Y < 50:
-        GPIO.setmode(led2Pin, GPIO.HIGH)
+        ledSwitch(led2Pin, True)
     else:
-        GPIO.setmode(led2Pin, GPIO.LOW)
+        ledSwitch(led2Pin, False)
 
-def led3func(val_X):
     if val_X > 205: 
-        GPIO.setmode(led3Pin, GPIO.HIGH)
+        ledSwitch(led3Pin, True)
     else:
-        GPIO.setmode(GPIO.LOW)        
+        ledSwitch(led3Pin, False)
 
-def led4func(val_X):
     if val_X < 50: 
-        GPIO.setmode(led4Pin, GPIO.HIGH)
+        ledSwitch(led4Pin, True)
     else:
-        GPIO.setmode(GPIO.LOW)     
+        ledSwitch(led4Pin, False)    
+
+def ledSwitch(ledPin, isOn = False):
+    GPIO.setmode(ledPin, GPIO.HIGH if isOn else GPIO.LOW)
+
 
 def destroy():
     bus.close()
@@ -65,10 +74,6 @@ def destroy():
 if __name__ =='__main__':
     print('Program is starting...')
     setup()
-    ledfunc()
-    led2func()
-    led3func()
-    led4func()
     try:
         loop()
 
