@@ -61,6 +61,36 @@
 # print(x, y)
 
 
-game = ['rock', 'paper', 'scissors', 'paper']
-string = "this is canada"
-print(sorted(set(game), reverse= True))
+# game = ['rock', 'paper', 'scissors', 'paper']
+# string = "this is canada"
+# print(sorted(set(game), reverse= True))
+# import sys
+# def main():
+#     try:
+
+#         x = int("foo")
+#         # y = 5/0
+#     # except ValueError:
+#     #     print("Value Error")
+#     except:
+#         print(f"Unknown Error: {sys.exc_info()[1]}")
+# if __name__ == '__main__': main()
+
+3000000.32
+
+x = 3000000.325656464564646546
+
+print(f'Money: {x:,.2f}')
+
+s = 'Kayden-is studying-for-test.'
+l = s.split('-')
+s2 = ' '.join(l)
+print(s2)
+
+s1 = 'Test'
+s2 = 'tEST'
+
+print(s2.title())
+
+a=1
+print('{0:03}'.format(a))
