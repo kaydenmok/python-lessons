@@ -28,8 +28,8 @@ def loop():
                 if i==1:
                     GPIO.output(relayPin, GPIO.HIGH)
                     print('relayPin...On')
-                else:
-                    g=0
+        else:
+            g=0
 
 def destroy():
     GPIO.output(relayPin, GPIO.LOW)
