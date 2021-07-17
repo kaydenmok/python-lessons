@@ -15,21 +15,21 @@ def loop():
     g = 0
     while True:
         reading = GPIO.input(buttonPin)
-        if reading == GPIO.HIGH & g==0:
-            time.sleep(0.2)
-            reading = GPIO.input(buttonPin)
-            if reading == GPIO.HIGH:
-                i = i + 1
-                i = i % 2
-                g = 1
-                if i==0:
-                    GPIO.output(relayPin, GPIO.LOW)
-                    print("relayPin... off")
-                if i==1:
-                    GPIO.output(relayPin, GPIO.HIGH)
-                    print('relayPin...On')
+        # if reading == GPIO.HIGH & g==0:
+        time.sleep(0.3)
+            # reading = GPIO.input(buttonPin)
+        if reading == GPIO.HIGH:
+            #     i = i + 1
+            #     i = i % 2
+            #     g = 1
+            #     if i==0:
+            #     if i==1:
+            GPIO.output(relayPin, GPIO.HIGH)
+            print('relayPin...On')
         else:
-            g=0
+            # g=0
+            GPIO.output(relayPin, GPIO.LOW)
+            print("relayPin... off")
 
 def destroy():
     GPIO.output(relayPin, GPIO.LOW)
