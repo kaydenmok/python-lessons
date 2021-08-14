@@ -21,16 +21,16 @@ def sendout(dPin,cPin,way,val):
             GPIO.output(dPin, (0x01 & (val>>i) ==0x01)and GPIO.HIGH or GPIO.LOW)
         elif(way == MWAY):
             GPIO.output(dPin,(0x80 & (val<<i)==0x80)and GPIO.HIGH or GPIO.LOW)
-            GPIO.output(cPin,GPIO.HIGH)
+        GPIO.output(cPin,GPIO.HIGH)
 
 
 def loop():
-     for i in range(0,len(num)):
+    for i in range(0,len(num)):
          GPIO.output(latchPin, GPIO.LOW)
          sendout(dataPin, clockPin, MWAY, num[i])
          GPIO.output(latchPin, GPIO.HIGH)
          time.sleep(0.5)
-     for i in range(0,len(num)):
+    for i in range(0,len(num)):
          GPIO.output(latchPin,GPIO.LOW)
          sendout(dataPin,clockPin,MWAY,num[i]&0x7f)
          GPIO.output(latchPin, GPIO.HIGH)
