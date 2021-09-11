@@ -53,7 +53,7 @@ def display(dec):
     time.sleep(0.001)
     outData(0xff)
     selectDigit(0x04)
-    outData([num%1000//100])
+    outData(num[dec%1000//100])
     time.sleep(0.001)
     outData(0xff)
     selectDigit(0x08)
