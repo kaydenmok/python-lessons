@@ -11,7 +11,7 @@ def get_cpu_temp():
     return'{:.2f}'.format( float(cpu)/1000) + 'C'
 
 def get_time_now():
-    return datetime.now().strftime('      %H:%M%:%S')
+    return datetime.now().strftime('%I:%M:%S %p')
 
 def loop():
     mcp.output(3,1)
@@ -35,14 +35,14 @@ except:
     try:
         mcp = PCF8574_GPIO(PCF8574A_address)
     except:
-        print('12C Address Error!')
+        print('I2C Address Error!')
         exit(1)
 
-    lcd = Adafruit_CharLCD(pin_rs=0, pin_e=2, pins_db=[4,5,6,7], GPIO=mcp)
+lcd = Adafruit_CharLCD(pin_rs=0, pin_e=2, pins_db=[4,5,6,7], GPIO=mcp)
 
-    if __name__ == '__main__':
-        print('starting...')
-        try:
-            loop()
-        except KeyboardInterrupt:
-            destroy()
+if __name__ == '__main__':
+    print('starting...')
+    try:
+        loop()
+    except KeyboardInterrupt:
+        destroy()
