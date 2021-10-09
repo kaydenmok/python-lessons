@@ -26,12 +26,12 @@ def loop():
             # If the key is D then check password and reset the list
                 if (checkPassword(keysList)):
                     print('Pass')
-                    GPIO.output(ledPins[1], GPIO.LOW)
-                    GPIO.output(ledPins[0], GPIO.HIGH)
+                    GPIO.output(ledPins[1], GPIO.HIGH)
+                    GPIO.output(ledPins[0], GPIO.LOW)
                 else:
                     print('Wrong password')
-                    GPIO.output(ledPins[0], GPIO.LOW)
-                    GPIO.output(ledPins[1], GPIO.HIGH)
+                    GPIO.output(ledPins[0], GPIO.HIGH)
+                    GPIO.output(ledPins[1], GPIO.LOW)
                     
                 keysList = []
             else:
