@@ -45,7 +45,8 @@ def loop():
 def checkPassword(keyPress):
     password = ['1', '2', '3']
     matches = [i for i, j in zip(password, keyPress) if i == j]
-    if matches[0] == len(password):
+    print(matches)
+    if len(matches) == len(password):
         return True
     else:
         return False
@@ -54,6 +55,7 @@ def checkPassword(keyPress):
 
 
 if __name__ == '__main__':
+    setup()
     try:
         loop()
     except KeyboardInterrupt:
