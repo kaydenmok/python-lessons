@@ -3,7 +3,6 @@ import Keypad
 ROWS = 4
 COLS = 4
 keys = ['1','2','3','A','4','5','6','B','7','8','9','C','*','0','#','D']
-password = ['1', '2', '3']
 rowsPins = [12, 16,18,22]
 colsPins = [19,15,13,11]
 ledPins = [36, 38, 40]   #36 (16)= red, 38 (20) = green, 40 (21) = yellow
@@ -19,13 +18,14 @@ def loop():
     keypad = Keypad.Keypad(keys,rowsPins,colsPins, ROWS,COLS)
     keypad.setDebounceTime(50)
     keysList = []
+    password = ['1', '2', '3']
     status = False
     while(True):
         key = keypad.getKey()
         if(key != keypad.NULL):
             if(key == 'D'):
             # If the key is D then check password and reset the list
-                if (checkPassword(keysList)):
+                if (checkPassword(keysList, password)):
                     print('Pass')
                     status = True
                     GPIO.output(ledPins[1], GPIO.HIGH)
@@ -40,6 +40,7 @@ def loop():
                     
                 keysList = []
             elif(key == 'A' and status == True):
+                keysList = []
                 GPIO.output(ledPins[0], GPIO.LOW)
                 GPIO.output(ledPins[1], GPIO.LOW)
                 GPIO.output(ledPins[2], GPIO.HIGH)
@@ -53,7 +54,7 @@ def loop():
 # Input: typed password from user
 # Doing: Matching the passwords
 # Output: return true or false
-def checkPassword(keyPress):
+def checkPassword(keyPress, password):
 
     matches = [i for i, j in zip(password, keyPress) if i == j]
     print(matches)
