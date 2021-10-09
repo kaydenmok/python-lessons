@@ -6,7 +6,7 @@ keys = ['1','2','3','A','4','5','6','B','7','8','9','C','*','0','#','D']
 password = ['1', '2', '3']
 rowsPins = [12, 16,18,22]
 colsPins = [19,15,13,11]
-ledPins = [36, 38]   #36 (16)= red, 38 (20) = green
+ledPins = [36, 38, 40]   #36 (16)= red, 38 (20) = green, 40 (21) = yellow
 def setup():
     print ('Program is starting...')
     GPIO.setmode(GPIO.BOARD)
@@ -19,6 +19,7 @@ def loop():
     keypad = Keypad.Keypad(keys,rowsPins,colsPins, ROWS,COLS)
     keypad.setDebounceTime(50)
     keysList = []
+    status = False
     while(True):
         key = keypad.getKey()
         if(key != keypad.NULL):
@@ -26,17 +27,24 @@ def loop():
             # If the key is D then check password and reset the list
                 if (checkPassword(keysList)):
                     print('Pass')
+                    status = True
                     GPIO.output(ledPins[1], GPIO.HIGH)
                     GPIO.output(ledPins[0], GPIO.LOW)
-                elif(key == 'A'):
-                    password = updatePassword(keypad)
-                    print("password updated")
+                    GPIO.output(ledPins[2], GPIO.LOW)
                 else:
+                    status = False
                     print('Wrong password')
                     GPIO.output(ledPins[0], GPIO.HIGH)
                     GPIO.output(ledPins[1], GPIO.LOW)
+                    GPIO.output(ledPins[2], GPIO.LOW)
                     
                 keysList = []
+            elif(key == 'A' and status == True):
+                GPIO.output(ledPins[0], GPIO.LOW)
+                GPIO.output(ledPins[1], GPIO.LOW)
+                GPIO.output(ledPins[2], GPIO.HIGH)
+                password = updatePassword(keypad)
+                print(f"password updated: {password}")
             else:
                 # Else add to the list
                 print("You Pressed Key : %c "%(key))
