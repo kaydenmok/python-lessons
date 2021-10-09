@@ -46,7 +46,7 @@ def checkPassword(keyPress):
     password = ['1', '2', '3']
     matches = [i for i, j in zip(password, keyPress) if i == j]
     print(matches)
-    if len(matches) == len(password):
+    if len(matches) == len(password) == len(keyPress):
         return True
     else:
         return False
