@@ -12,7 +12,7 @@ def setup():
     GPIO.setmode(GPIO.BOARD)
     for pin in ledPins:
         GPIO.setup(pin,GPIO.OUT)
-        GPIO.output(pin, GPIO.HIGH)
+        GPIO.output(pin, GPIO.LOW)
 
 
 def loop():
