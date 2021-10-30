@@ -13,6 +13,7 @@ def loop():
     while True:
         if GPIO.input(sensorPin)==GPIO.HIGH:
             GPIO.output(ledPin, GPIO.HIGH)
+            print(GPIO.input(sensorPin))
             print('led on...')
 
         else:
