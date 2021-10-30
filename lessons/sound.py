@@ -14,10 +14,11 @@ def loop():
         if PIN == GPIO.HIGH:
             GPIO.output(LED, GPIO.HIGH)
             print('LED... HIGH')
+            time.sleep(1)
         else:
             GPIO.output(LED,GPIO.LOW)
             print('LED... LOW')
-        time.sleep(0.5)
+            time.sleep(0.3)
 
 def destroy():
     GPIO.cleanup()
