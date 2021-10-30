@@ -7,31 +7,31 @@ def setup():
     GPIO.setup(17, GPIO.OUT)
     GPIO.setup(18, GPIO.OUT)
     GPIO.setup(27, GPIO.OUT)
+    GPIO.output(17, GPIO.LOW)
+    GPIO.output(18, GPIO.LOW)
+    GPIO.output(27, GPIO.LOW)
     print("irm test start.......................")
 
 def exec_cmd(key_val):
     if(key_val==0x45):
-        GPIO.setup(17, GPIO.HIGH)
-        GPIO.setup(18, GPIO.LOW)
-        GPIO.setup(27, GPIO.LOW)
+        GPIO.output(17, GPIO.HIGH)
+        GPIO.output(18, GPIO.LOW)
+        GPIO.output(27, GPIO.LOW)
     elif(key_val==0x46):
-        GPIO.setup(17, GPIO.LOW)
-        GPIO.setup(18, GPIO.HIGH)
-        GPIO.setup(27, GPIO.LOW)
+        GPIO.output(17, GPIO.LOW)
+        GPIO.output(18, GPIO.HIGH)
+        GPIO.output(27, GPIO.LOW)
     elif(key_val==0x47):
-        GPIO.setup(17, GPIO.LOW)
-        GPIO.setup(18, GPIO.LOW)
-        GPIO.setup(27, GPIO.HIGH)
+        GPIO.output(17, GPIO.LOW)
+        GPIO.output(18, GPIO.LOW)
+        GPIO.output(27, GPIO.HIGH)
     else:
-        GPIO.setup(17, GPIO.LOW)
-        GPIO.setup(18, GPIO.LOW)
-        GPIO.setup(27, GPIO.LOW)
+        GPIO.output(17, GPIO.LOW)
+        GPIO.output(18, GPIO.LOW)
+        GPIO.output(27, GPIO.LOW)
 
 def loop():
     while True:
-        GPIO.setup(17, GPIO.HIGH)
-        GPIO.setup(18, GPIO.HIGH)
-        GPIO.setup(27, GPIO.HIGH)
         if GPIO.input(PIN) == 0:
             count = 0
             while GPIO.input(PIN) == 0 and count < 200:
