@@ -12,14 +12,14 @@ def setup():
         GPIO.output(pin, GPIO.HIGH)
 
 
-
+# Execute the command
 def exec_cmd(key_val):
     if(key_val==0x45):
         turnOn()
     elif(key_val==0x46):
         flowLeft2Right()
     elif(key_val==0x47):
-        flowLeft2Right()
+        flowRight2Left()
     else:
         turnOff()
 #commands------------------------
@@ -30,9 +30,9 @@ def turnOff():
 
 def flowLeft2Right():
     for pin in ledPins:
-            GPIO.output(pin,GPIO.LOW)
-            time.sleep(0.1)
-            GPIO.output(pin, GPIO.HIGH)
+        GPIO.output(pin,GPIO.LOW)
+        time.sleep(0.1)
+        GPIO.output(pin, GPIO.HIGH)
 
 def flowRight2Left():
     for pin in ledPins[::-1]:
