@@ -1,10 +1,10 @@
 import RPi.GPIO as GPIO
-import MFRC522
+import mfrc522
 import sys
 import os
 
 #create an object of the class MFRC522
-mfrc = MFRC522.MFRC522()
+mfrc = mfrc522.MFRC522()
 def dis_CommandLine():
     print("RC522>", end="")
 def dis_CardID(cardID):
@@ -23,7 +23,7 @@ def loop():
         print(inCmd)
         if (inCmd == "scan"):
             print ("Scanning...")
-            mfrc = MFRC522.MDRC522()
+            mfrc = mfrc522.MFRC522()
             isScan = True
             while isScan:
                 #SCAN FOR CARDS
@@ -139,11 +139,4 @@ if __name__ =='__main__':
         loop()
 
     except KeyboardInterrupt:
-        destroy()
-
-
-                        
-
-
-                        
-                        
+        destroy()               
