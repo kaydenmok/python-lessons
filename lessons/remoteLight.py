@@ -7,6 +7,7 @@ ledPins = [11,12,13,15,16]
 def setup():
     print ('Program is starting...')
     GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(PIN,GPIO.IN,GPIO.PUD_UP)
     for pin in ledPins:
         GPIO.setup(pin,GPIO.OUT)
         GPIO.output(pin, GPIO.HIGH)
