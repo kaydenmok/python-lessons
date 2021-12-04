@@ -10,7 +10,7 @@ def setup():
     GPIO.setup(PIN,GPIO.IN,GPIO.PUD_UP)
     for pin in ledPins:
         GPIO.setup(pin,GPIO.OUT)
-        GPIO.output(pin, GPIO.HIGH)
+        GPIO.output(pin, GPIO.LOW)
 
 
 # Execute the command
@@ -27,23 +27,23 @@ def exec_cmd(key_val):
 
 def turnOff():
     for pin in ledPins:
-        GPIO.output(pin, GPIO.HIGH)   
+        GPIO.output(pin, GPIO.LOW)   
 
 def flowLeft2Right():
     for pin in ledPins:
-        GPIO.output(pin,GPIO.LOW)
+        GPIO.output(pin,GPIO.HIGH)
         time.sleep(0.1)
-        GPIO.output(pin, GPIO.HIGH)
+        GPIO.output(pin, GPIO.LOW)
 
 def flowRight2Left():
     for pin in ledPins[::-1]:
-        GPIO.output(pin, GPIO.LOW)
+        GPIO.output(pin, GPIO.HIGH)
         time.sleep(0.1)
-        GPIO.output(pin, GPIO.HIGH) 
+        GPIO.output(pin, GPIO.LOW) 
     
 def turnOn():
     for pin in ledPins:
-        GPIO.output(pin, GPIO.LOW)
+        GPIO.output(pin, GPIO.HIGH)
 #----------------------------------------------
 
 def loop():
